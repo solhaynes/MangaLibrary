@@ -1,0 +1,36 @@
+@model IEnumerable<GenreListItem>
+
+@{
+  ViewData["Title"] = "Genre Index";
+}
+
+<h1>Genre</h1>
+<p>
+  <a asp-action="Create">Create Genre</a>
+</p>
+
+<table>
+  <thead>
+    <th>
+      @Html.DisplayNameFor(model => model.Name)
+    </th>
+    <th></th>
+  </thead>
+  <tbody>
+    @foreach (var item in Model)
+    {
+      <tr>
+        <td>
+          @item.Name
+        </td>
+        <td>
+          <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+          <span>|</span>
+          <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+          <span>|</span>
+          <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
