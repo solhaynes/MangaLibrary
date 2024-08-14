@@ -40,3 +40,16 @@ public class GenreService : IGenreService
       return genres;
   }
 
+  public async Task<GenreDetail?> GetGenreDetailAsync(int id)
+  {
+    MangaLibrary.Data.Genre? genre = await _context.Genres
+      .FirstOrDefaultAsync(r => r.Id == id);
+
+    return genre is null ? null : new()
+    {
+      Id = genre.Id,
+      Name = genre.Name,
+      Description = genre.Description
+    };
+  }
+
