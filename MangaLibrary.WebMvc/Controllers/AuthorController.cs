@@ -1,13 +1,13 @@
-using MangaLibrary.Models.Genre;
-using MangaLibrary.Services.Genre;
+using MangaLibrary.Models.Author;
+using MangaLibrary.Services.Author;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MangaLibrary.WebMvc.Controllers;
 
-public class GenreController : Controller
+public class AuthorController : Controller
 {
-  private IGenreService _service;
-  public GenreController(IGenreService service)
+  private IAuthorService _service;
+  public AuthorController(IAuthorService service)
   {
     _service = service;
   }
@@ -15,7 +15,7 @@ public class GenreController : Controller
   [HttpGet]
   public async Task<IActionResult> Index()
   {
-    List<GenreListItem> genres = await _service.GetAllGenresAsync();
+    List<AuthorListItem> genres= await _service.GetAllAuthorsAsync();
     return View(genres);
   }
 
@@ -26,14 +26,14 @@ public class GenreController : Controller
   }
 
   [HttpPost]
-  public async Task<IActionResult> Create(GenreCreate model)
+  public async Task<IActionResult> Create(AuthorCreate model)
   {
     if (!ModelState.IsValid)
     {
       return View(model);
     }
 
-    await _service.CreateGenreAsync(model);
+    await _service.CreateAuthorAsync(model);
 
     return RedirectToAction(nameof(Index));
   }
@@ -41,7 +41,7 @@ public class GenreController : Controller
   [HttpGet]
   public async Task<IActionResult> Details(int id)
   {
-    GenreDetail? model = await _service.GetGenreDetailAsync(id);
+    AuthorDetail? model = await _service.GetAuthorDetailAsync(id);
 
     if (model is null)
     {
@@ -55,32 +55,35 @@ public class GenreController : Controller
   [HttpGet]
   public async Task<IActionResult> Edit(int id)
   {
-    GenreDetail? genre = await _service.GetGenreDetailAsync(id);
-    if (genre is null)
+    AuthorDetail? author = await _service.GetAuthorDetailAsync(id);
+    if (author is null)
     {
       return NotFound();
     }
 
-    GenreEdit model = new()
+    AuthorEdit model = new()
     {
-      Id = genre.Id,
-      Name = genre.Name ?? "",
-      Description = genre.Description ?? ""
+      Id = author.Id,
+      FirstName = author.FirstName ?? "",
+      LastName = author.LastName ?? "",
+      DateOfBirth = author.DateOfBirth,
+      ImageLink = author.ImageLink,
+
     };
 
     return View(model);
   }
 
   [HttpPost]
-  public async Task<IActionResult> Edit(int id, GenreEdit model)
+  public async Task<IActionResult> Edit(int id, AuthorEdit model)
   {
     if (!ModelState.IsValid)
       return View(model);
 
-    if (await _service.UpdateGenreAsync(model))
+    if (await _service.UpdateAuthorAsync(model))
       return RedirectToAction(nameof(Details), new { id = id });
 
-    ModelState.AddModelError("Save Error", "Could not update the Genre. Please try again.");
+    ModelState.AddModelError("Save Error", "Could not update the Author. Please try again.");
     return View(model);
   }
 
@@ -88,20 +91,20 @@ public class GenreController : Controller
   [HttpGet]
   public async Task<IActionResult> Delete(int id)
   {
-    GenreDetail? genre = await _service.GetGenreDetailAsync(id);
-    if (genre is null)
+    AuthorDetail? author = await _service.GetAuthorDetailAsync(id);
+    if (author is null)
     {
       return RedirectToAction(nameof(Index));
     }
 
-    return View(genre);
+    return View(author);
   }
 
   [HttpPost]
   [ActionName(nameof(Delete))]
   public async Task<IActionResult> ConfirmDelete(int id)
   {
-    await _service.DeleteGenreAsync(id);
+    await _service.DeleteAuthorAsync(id);
     return RedirectToAction(nameof(Index));
   }
 }

@@ -1,5 +1,7 @@
 using MangaLibrary.Data;
 using MangaLibrary.Services.Genre;
+using MangaLibrary.Services.Author;
+using MangaLibrary.Services.Series;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,8 @@ builder.Services.AddDbContext<MangaLibraryDbContext>(options => options.UseSqlSe
 ));
 
 builder.Services.AddScoped<IGenreService, GenreService>();
+builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddScoped<ISeriesService, SeriesService>();
 
 var app = builder.Build();
 

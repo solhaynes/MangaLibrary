@@ -1,0 +1,25 @@
+@model IEnumerable<AuthorListItem>
+
+@{
+  ViewData["Title"] = "Author Index";
+}
+
+<h1>Author</h1>
+<p>
+  <a asp-action="Create">Create Author</a>
+</p>
+
+
+@foreach (var item in Model)
+{
+  <div class = "author-tile">
+  <img src="@item.ImageLink">
+  <h3>@item.FirstName @item.LastName</h3>
+  
+  <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+  <span>|</span>
+  <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+  <span>|</span>
+  <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+  </div>
+}

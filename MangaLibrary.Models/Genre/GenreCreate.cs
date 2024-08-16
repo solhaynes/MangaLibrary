@@ -5,10 +5,10 @@ namespace MangaLibrary.Models.Genre;
 public class GenreCreate
 {
   [Required]
-  [MinLength(1)]
+  [MaxLength(50)]
   public string Name { get; set; } = string.Empty;
 
   [Required]
-  [MinLength(1)]
+  [MaxLength(500)]
   public string Description { get; set; } = string.Empty;
 }

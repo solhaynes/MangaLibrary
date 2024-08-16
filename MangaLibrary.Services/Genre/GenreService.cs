@@ -53,3 +53,29 @@ public class GenreService : IGenreService
     };
   }
 
+  public async Task<bool> UpdateGenreAsync(GenreEdit model)
+  {
+    MangaLibrary.Data.Genre? entity = await _context.Genres.FindAsync(model.Id);
+
+    if (entity is null)
+    {
+      return false;
+    }
+
+    entity.Name = model.Name;
+    entity.Description = model.Description;
+    return await _context.SaveChangesAsync() == 1;
+  }
+
+  public async Task<bool> DeleteGenreAsync(int id)
+  {
+    MangaLibrary.Data.Genre? entity = await _context.Genres.FindAsync(id);
+    if (entity is null)
+    {
+      return false;
+    }
+
+    _context.Genres.Remove(entity);
+    return await _context.SaveChangesAsync() == 1;
+  }
+}
