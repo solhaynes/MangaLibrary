@@ -1,4 +1,4 @@
-using MangaLibrary.Data;
+using MangaLibrary.Data.Entities;
 using MangaLibrary.Services.Genre;
 using MangaLibrary.Services.Author;
 using MangaLibrary.Services.Series;

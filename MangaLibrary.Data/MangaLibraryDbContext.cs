@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace MangaLibrary.Data;
+namespace MangaLibrary.Data.Entities;
 
 public class MangaLibraryDbContext : DbContext
 {

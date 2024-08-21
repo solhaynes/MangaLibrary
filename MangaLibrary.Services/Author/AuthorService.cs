@@ -1,4 +1,4 @@
-using MangaLibrary.Data;
+using MangaLibrary.Data.Entities;
 using MangaLibrary.Models.Author;
 using MangaLibrary.Services.Author;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +15,7 @@ public class AuthorService : IAuthorService
 
   public async Task<bool> CreateAuthorAsync(AuthorCreate model)
   {
-    MangaLibrary.Data.Author entity = new()
+    MangaLibrary.Data.Entities.Author entity = new()
     {
       FirstName = model.FirstName,
       LastName = model.LastName,
@@ -44,7 +44,7 @@ public class AuthorService : IAuthorService
 
   public async Task<AuthorDetail?> GetAuthorDetailAsync(int id)
   {
-    MangaLibrary.Data.Author? author = await _context.Authors
+    MangaLibrary.Data.Entities.Author? author = await _context.Authors
       .FirstOrDefaultAsync(r => r.Id == id);
 
     return author is null ? null : new()
@@ -59,7 +59,7 @@ public class AuthorService : IAuthorService
 
   public async Task<bool> UpdateAuthorAsync(AuthorEdit model)
   {
-    MangaLibrary.Data.Author? entity = await _context.Authors.FindAsync(model.Id);
+    MangaLibrary.Data.Entities.Author? entity = await _context.Authors.FindAsync(model.Id);
 
     if (entity is null)
     {
@@ -75,7 +75,7 @@ public class AuthorService : IAuthorService
 
   public async Task<bool> DeleteAuthorAsync(int id)
   {
-    MangaLibrary.Data.Author? entity = await _context.Authors.FindAsync(id);
+    MangaLibrary.Data.Entities.Author? entity = await _context.Authors.FindAsync(id);
     if (entity is null)
     {
       return false;
@@ -83,5 +83,19 @@ public class AuthorService : IAuthorService
 
     _context.Authors.Remove(entity);
     return await _context.SaveChangesAsync() == 1;
+  }
+
+   public async Task<List<AuthorList>> GetAuthorSelectListAsync()
+  {
+    {
+        return _context.Authors
+            .Select(x => new AuthorList()
+            {
+                Id = x.Id,
+                // FirstName = x.FirstName,
+                // LastName = x.LastName,
+                Name = string.Format($"{x.FirstName} {x.LastName}" )
+            }).ToList();
+    }
   }
 }

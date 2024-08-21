@@ -10,7 +10,7 @@
 </p>
 
 
-@* @foreach (var item in Model)
+@foreach (var item in Model)
 {
   <div class = "item-tile">
   <img src="@item.ImageLink">
@@ -22,4 +22,4 @@
   <span>|</span>
   <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
   </div>
-} *@
+}

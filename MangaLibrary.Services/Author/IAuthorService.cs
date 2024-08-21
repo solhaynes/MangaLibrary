@@ -9,4 +9,5 @@ public interface IAuthorService
   Task<AuthorDetail?> GetAuthorDetailAsync(int id);
   Task<bool> UpdateAuthorAsync(AuthorEdit model);
   Task<bool> DeleteAuthorAsync(int id);
+  Task<List<AuthorList>> GetAuthorSelectListAsync();
 }

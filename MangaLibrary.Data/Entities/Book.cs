@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MangaLibrary.Data;
+namespace MangaLibrary.Data.Entities;
 
 public class Book 
 {

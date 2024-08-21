@@ -9,4 +9,5 @@ public interface IGenreService
   Task<GenreDetail?> GetGenreDetailAsync(int id);
   Task<bool> UpdateGenreAsync(GenreEdit model);
   Task<bool> DeleteGenreAsync(int id);
+  Task<List<GenreList>> GetGenreSelectListAsync();
 }

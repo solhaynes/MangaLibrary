@@ -15,8 +15,8 @@ public class AuthorController : Controller
   [HttpGet]
   public async Task<IActionResult> Index()
   {
-    List<AuthorListItem> genres= await _service.GetAllAuthorsAsync();
-    return View(genres);
+    List<AuthorListItem> authors= await _service.GetAllAuthorsAsync();
+    return View(authors);
   }
 
   [HttpGet]

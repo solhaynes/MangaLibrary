@@ -1,4 +1,4 @@
-using MangaLibrary.Data;
+using MangaLibrary.Data.Entities;
 using MangaLibrary.Models.Series;
 using MangaLibrary.Services.Series;
 using Microsoft.EntityFrameworkCore;
@@ -13,19 +13,20 @@ public class SeriesService : ISeriesService
     _context = context;
   }
 
-  // public async Task<bool> CreateSeriesAsync(SeriesCreate model)
-  // {
-  //   MangaLibrary.Data.Series entity = new()
-  //   {
-  //     Title = model.Title,
-  //     LastName = model.LastName,
-  //     DateOfBirth = model.DateOfBirth,
-  //     ImageLink = model.ImageLink
-  //   };
-  //   _context.Seriess.Add(entity);
-  //   return await _context.SaveChangesAsync() == 1;
+  public async Task<bool> CreateSeriesAsync(SeriesCreate model)
+  {
+    MangaLibrary.Data.Entities.Series entity = new()
+    {
+      Title = model.Title,
+      AuthorId = model.AuthorId,
+      GenreId = model.GenreId,
+      Description = model.Description,
+      ImageLink = model.ImageLink
+    };
+    _context.Series.Add(entity);
+    return await _context.SaveChangesAsync() == 1;
 
-  // }
+  }
 
   public async Task<List<SeriesListItem>> GetAllSeriesAsync()
   {

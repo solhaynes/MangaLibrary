@@ -1,4 +1,4 @@
-using MangaLibrary.Data;
+using MangaLibrary.Data.Entities;
 using MangaLibrary.Models.Genre;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Components.Routing;
@@ -16,7 +16,7 @@ public class GenreService : IGenreService
 
   public async Task<bool> CreateGenreAsync(GenreCreate model)
   {
-    MangaLibrary.Data.Genre entity = new()
+    MangaLibrary.Data.Entities.Genre entity = new()
     {
       Name = model.Name,
       Description = model.Description
@@ -42,7 +42,7 @@ public class GenreService : IGenreService
 
   public async Task<GenreDetail?> GetGenreDetailAsync(int id)
   {
-    MangaLibrary.Data.Genre? genre = await _context.Genres
+    MangaLibrary.Data.Entities.Genre? genre = await _context.Genres
       .FirstOrDefaultAsync(r => r.Id == id);
 
     return genre is null ? null : new()
@@ -55,7 +55,7 @@ public class GenreService : IGenreService
 
   public async Task<bool> UpdateGenreAsync(GenreEdit model)
   {
-    MangaLibrary.Data.Genre? entity = await _context.Genres.FindAsync(model.Id);
+    MangaLibrary.Data.Entities.Genre? entity = await _context.Genres.FindAsync(model.Id);
 
     if (entity is null)
     {
@@ -69,7 +69,7 @@ public class GenreService : IGenreService
 
   public async Task<bool> DeleteGenreAsync(int id)
   {
-    MangaLibrary.Data.Genre? entity = await _context.Genres.FindAsync(id);
+    MangaLibrary.Data.Entities.Genre? entity = await _context.Genres.FindAsync(id);
     if (entity is null)
     {
       return false;
@@ -77,5 +77,17 @@ public class GenreService : IGenreService
 
     _context.Genres.Remove(entity);
     return await _context.SaveChangesAsync() == 1;
+  }
+
+  public async Task<List<GenreList>> GetGenreSelectListAsync()
+  {
+    {
+        return _context.Genres
+            .Select(x => new GenreList()
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
+    }
   }
 }

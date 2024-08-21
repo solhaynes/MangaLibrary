@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace MangaLibrary.Data;
+namespace MangaLibrary.Data.Entities;
 
 public class Genre
 {
