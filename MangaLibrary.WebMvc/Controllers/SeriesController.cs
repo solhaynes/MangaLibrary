@@ -56,73 +56,82 @@ public class SeriesController : Controller
     return RedirectToAction(nameof(Index));
   }
 
-  // [HttpGet]
-  // public async Task<IActionResult> Details(int id)
-  // {
-  //   SeriesDetail? model = await _seriesService.GetSeriesDetailAsync(id);
+  [HttpGet]
+  public async Task<IActionResult> Details(int id)
+  {
+    SeriesDetail? model = await _seriesService.GetSeriesDetailAsync(id);
 
-  //   if (model is null)
-  //   {
-  //     return NotFound();
-  //   }
+    if (model is null)
+    {
+      return NotFound();
+    }
 
-  //   return View(model);
-  // }
+    return View(model);
+  }
 
-  // // Genre Edit
-  // [HttpGet]
-  // public async Task<IActionResult> Edit(int id)
-  // {
-  //   SeriesDetail? Series = await _seriesService.GetSeriesDetailAsync(id);
-  //   if (Series is null)
-  //   {
-  //     return NotFound();
-  //   }
+  // Series Edit
+  [HttpGet]
+  public async Task<IActionResult> Edit(int id)
+  {
+    SeriesDetail? Series = await _seriesService.GetSeriesDetailAsync(id);
+    if (Series is null)
+    {
+      return NotFound();
+    }
 
-  //   SeriesEdit model = new()
-  //   {
-  //     Id = Series.Id,
-  //     FirstName = Series.FirstName ?? "",
-  //     LastName = Series.LastName ?? "",
-  //     DateOfBirth = Series.DateOfBirth,
-  //     ImageLink = Series.ImageLink,
+    SeriesEdit model = new()
+    {
+      Id = Series.Id,
+      Title = Series.Title ?? "",
+      AuthorId = Series.AuthorId,
+      GenreId = Series.GenreId,
+      Description = Series.Description ?? "",
+      ImageLink = Series.ImageLink,
 
-  //   };
+    };
 
-  //   return View(model);
-  // }
+    List<GenreList> genres = await _genreService.GetGenreSelectListAsync();
+    var genreHolder = new SelectList(genres, "Id", "Name");
+    ViewBag.GenreDropDownList = genreHolder;
 
-  // [HttpPost]
-  // public async Task<IActionResult> Edit(int id, SeriesEdit model)
-  // {
-  //   if (!ModelState.IsValid)
-  //     return View(model);
+    List<AuthorList> authors = await _authorService.GetAuthorSelectListAsync();
+    var authorHolder = new SelectList(authors, "Id", "Name");
+    ViewBag.AuthorDropDownList = authorHolder;
 
-  //   if (await _seriesService.UpdateSeriesAsync(model))
-  //     return RedirectToAction(nameof(Details), new { id = id });
+    return View(model);
+  }
 
-  //   ModelState.AddModelError("Save Error", "Could not update the Series. Please try again.");
-  //   return View(model);
-  // }
+  [HttpPost]
+  public async Task<IActionResult> Edit(int id, SeriesEdit model)
+  {
+    if (!ModelState.IsValid)
+      return View(model);
 
-  // //Delete Genre
-  // [HttpGet]
-  // public async Task<IActionResult> Delete(int id)
-  // {
-  //   SeriesDetail? Series = await _seriesService.GetSeriesDetailAsync(id);
-  //   if (Series is null)
-  //   {
-  //     return RedirectToAction(nameof(Index));
-  //   }
+    if (await _seriesService.UpdateSeriesAsync(model))
+      return RedirectToAction(nameof(Details), new { id = id });
 
-  //   return View(Series);
-  // }
+    ModelState.AddModelError("Save Error", "Could not update the series. Please try again.");
+    return View(model);
+  }
 
-  // [HttpPost]
-  // [ActionName(nameof(Delete))]
-  // public async Task<IActionResult> ConfirmDelete(int id)
-  // {
-  //   await _seriesService.DeleteSeriesAsync(id);
-  //   return RedirectToAction(nameof(Index));
-  // }
+  //Delete Genre
+  [HttpGet]
+  public async Task<IActionResult> Delete(int id)
+  {
+    SeriesDetail? Series = await _seriesService.GetSeriesDetailAsync(id);
+    if (Series is null)
+    {
+      return RedirectToAction(nameof(Index));
+    }
+
+    return View(Series);
+  }
+
+  [HttpPost]
+  [ActionName(nameof(Delete))]
+  public async Task<IActionResult> ConfirmDelete(int id)
+  {
+    await _seriesService.DeleteSeriesAsync(id);
+    return RedirectToAction(nameof(Index));
+  }
 }
