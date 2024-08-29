@@ -7,6 +7,9 @@
 <h1>Edit @Model.Title</h1>
 <hr />
 
+<div>
+
+</div>
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 <form asp-action="Edit" method="post" class="row g-3">
     <div class="col-md-6">
@@ -28,7 +31,7 @@
         </select>
         <span asp-validation-for="GenreId" class="text-danger"></span>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-6">
         <label asp-for="Description" class="form-label"></label>
         <input asp-for="Description" class="form-control">
         <span asp-validation-for="Description" class="text-danger"></span>

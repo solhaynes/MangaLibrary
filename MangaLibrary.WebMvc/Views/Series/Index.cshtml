@@ -6,20 +6,29 @@
 
 <h1>Series</h1>
 <p>
+    These are all of the manga series which currently exist in our library. 
+    Click the photos to learn about the each series.
+    Don't see the one you're looking for? Click the red button below to add it!
+  </p>
+<div class="button box-shadow">
   <a asp-action="Create">Create Series</a>
-</p>
+</div>
 
+<div class="content-container" id="series-content">
+  <ul class="inline-block no-style">
+    @foreach (var item in Model)
+    {
+      <li class="series-tile box-shadow inline-block">
+        <a asp-action="Details" asp-route-id="@item.Id">
+          <img src="@item.ImageLink" class="responsive">
+        </a>
+        <h3>@item.Title</h3>
 
-@foreach (var item in Model)
-{
-  <div class = "item-tile">
-  <img src="@item.ImageLink">
-  <h3>@item.Title</h3>
-  
-  <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-  <span>|</span>
-  <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-  <span>|</span>
-  <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-  </div>
-}
+        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+        <span>|</span>
+        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+      </li>
+    }
+  </ul>
+
+</div>

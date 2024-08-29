@@ -11,9 +11,11 @@ public class SeriesEdit
   public string Title { get; set; } = string.Empty;
 
   [Required]
+  [Display(Name = "Author")]
   public int AuthorId { get; set; }
 
   [Required]
+  [Display(Name = "Genre")]
   public int GenreId { get; set; }
 
   [Required]

@@ -67,6 +67,10 @@ nav li a:hover{
   background-color: white;
 }
 
+dd {
+  text-align: left;
+}
+
 .button {
   width: fit-content;
   padding: 10px 20px;
@@ -89,7 +93,8 @@ nav li a:hover{
 }
 
 .content-container {
-  margin: 50px 0px;
+  margin-top: 30px;
+  display: block;
 }
 
 .box-shadow {
@@ -104,6 +109,15 @@ nav li a:hover{
   list-style-type: none;
 }
 
+.left-align {
+  text-align: left;
+}
+
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
 #logo {
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: xx-large;
@@ -116,6 +130,7 @@ nav li a:hover{
 }
 .item button {
   border: solid black 2px;
+  background-color: white;
   border-radius: 20px;
   width: 150px;
   padding: 10px;
@@ -128,9 +143,15 @@ nav li a:hover{
 .no-decoration {
   text-decoration: none;
 }
-.item button:hover, .button:hover, .author-tile:hover {
+.item button:hover, .button:hover, .author-tile:hover,
+.book-tile:hover, .series-tile:hover{
   transform: scale(1.1);
   transition: 0.3s;
+}
+
+.back-button {
+  margin-top: 20px;
+  margin-bottom: 50px;
 }
 
 /* Author Page */
@@ -158,15 +179,58 @@ nav li a:hover{
   transform: translate(-50%, -50%);
 }
 
+#author-details {
+  border: solid black 2px;
+  height: 350px;
+  padding: 20px;
+}
+
 /* Book Page */
 .book-tile {
-  height: 400px;
+  height: 500px;
   width: 300px;
   text-align: center;
   border: solid black 2px;
   margin: 10px 20px;
+  position: relative;
 }
 
 .book-tile img {
   width: 200px;
+}
+
+#book-details {
+  width: 50%;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  border: solid black 2px;
+}
+
+#book-details dt, #series-details dt {
+  text-align: right;
+}
+
+/* Series Page */
+.series-tile {
+  width: 33%;
+  border: solid black 2px;
+  margin: 10px 20px;
+  padding: 10px;
+
+}
+
+#series-content {
+  margin-bottom: 50px;
+}
+
+#series-details{
+  border: solid black 2px;
+  padding: 10px;
+  margin-bottom: 50px;
+}
+
+#description-box {
+  width:50%;
+  height: 200px;
 }

@@ -6,37 +6,42 @@
 <h1>@Model.FirstName @Model.LastName</h1>
 <hr>
 
-<div style = "float: left; margin-right: 10px">
-  <img src = "@Model.ImageLink" height="300">
-</div>
+<div id="author-details">
+  <div style="float: left; margin-right: 10px">
+    <img src="@Model.ImageLink" height="300">
+  </div>
 
-<dl class = "row">
-  <dt class = "col-sm-2">
-    @Html.DisplayNameFor(model => model.FirstName)
-  </dt>
-  <dd class = "col-sm-10">
-    @Html.DisplayFor(model => model.FirstName)
-  </dd>
-</dl>
-<dl class = "row">
-  <dt class = "col-sm-2">
-    @Html.DisplayNameFor(model => model.LastName)
-  </dt>
-  <dd class = "col-sm-10">
-    @Html.DisplayFor(model => model.LastName)
-  </dd>
-</dl>
-<dl class = "row">
-  <dt class = "col-sm-2">
-    @Html.DisplayNameFor(model => model.DateOfBirth)
-  </dt>
-  <dd class = "col-sm-10">
-    @Html.DisplayFor(model => model.DateOfBirth)
-  </dd>
-</dl>
+  <div class="content-container">
+    <dl class="row">
+      <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.FirstName)
+      </dt>
+      <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.FirstName)
+      </dd>
+    </dl>
+    <dl class="row">
+      <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.LastName)
+      </dt>
+      <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.LastName)
+      </dd>
+    </dl>
+    <dl class="row">
+      <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.DateOfBirth)
+      </dt>
+      <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.DateOfBirth)
+      </dd>
+    </dl>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-    <span>|</span>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    <div class="left-align">
+      <a asp-action="Index">Back to List</a>
+      <span>|</span>
+      <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    </div>
+  </div>
+
 </div>
