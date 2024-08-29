@@ -43,4 +43,6 @@ The MVP needs to be able to Create, Read, Update, and Delete from each table.  T
 are something I'd prefer to only be available for users with Admin access. The average user shouldn't be able to add, update, or
 delete from the database.  
 
-Link to Trello Board: https://trello.com/b/1nDbPpz0/final-project
+##Schedule
+Here's a link to the Trello Board if you'd like to see more of the planning process:
+https://trello.com/b/1nDbPpz0/final-project
