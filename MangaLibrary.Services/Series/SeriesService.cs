@@ -92,4 +92,16 @@ public class SeriesService : ISeriesService
     _context.Series.Remove(entity);
     return await _context.SaveChangesAsync() == 1;
   }
+
+  public async Task<List<SeriesList>> GetSeriesSelectListAsync()
+  {
+    {
+        return _context.Series
+            .Select(x => new SeriesList()
+            {
+                Id = x.Id,
+                Title = x.Title
+            }).ToList();
+    }
+  }
 }

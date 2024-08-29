@@ -73,20 +73,20 @@ public class SeriesController : Controller
   [HttpGet]
   public async Task<IActionResult> Edit(int id)
   {
-    SeriesDetail? Series = await _seriesService.GetSeriesDetailAsync(id);
-    if (Series is null)
+    SeriesDetail? series = await _seriesService.GetSeriesDetailAsync(id);
+    if (series is null)
     {
       return NotFound();
     }
 
     SeriesEdit model = new()
     {
-      Id = Series.Id,
-      Title = Series.Title ?? "",
-      AuthorId = Series.AuthorId,
-      GenreId = Series.GenreId,
-      Description = Series.Description ?? "",
-      ImageLink = Series.ImageLink,
+      Id = series.Id,
+      Title = series.Title ?? "",
+      AuthorId = series.AuthorId,
+      GenreId = series.GenreId,
+      Description = series.Description ?? "",
+      ImageLink = series.ImageLink,
 
     };
 

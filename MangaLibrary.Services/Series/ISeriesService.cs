@@ -9,4 +9,5 @@ public interface ISeriesService
   Task<SeriesDetail?> GetSeriesDetailAsync(int id);
   Task<bool> UpdateSeriesAsync(SeriesEdit model);
   Task<bool> DeleteSeriesAsync(int id);
+  Task<List<SeriesList>> GetSeriesSelectListAsync();
 }

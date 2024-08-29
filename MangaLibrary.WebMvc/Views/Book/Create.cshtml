@@ -1,0 +1,49 @@
+@model BookCreate
+
+@{
+    ViewData["Title"] = "Create a Book";
+}
+
+<h1>Create a Book</h1>
+<hr />
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form asp-action="Create" method="post" class="row g-3">
+    <div class="col-md-6">
+        <label asp-for="SeriesId" class="form-label"></label>
+        <select asp-for="SeriesId" class="form-select" asp-items="@ViewBag.SeriesDropdownList">
+            <option disabled selected>--Select Series--</option>
+        </select>
+        <span asp-validation-for="SeriesId" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Volume" class="form-label"></label>
+        <input asp-for="Volume" class="form-control">
+        <span asp-validation-for="Volume" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Chapters" class="form-label"></label>
+        <input asp-for="Chapters" class="form-control">
+        <span asp-validation-for="Chapters" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="ReleaseDate" class="form-label"></label>
+        <input asp-for="ReleaseDate" class="form-control">
+        <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="ImageLink" class="form-label"></label>
+        <input asp-for="ImageLink" class="form-control">
+        <span asp-validation-for="ImageLink" class="text-danger"></span>
+    </div>
+    <div class="col d-flex justify-content-between align-items-baseline">
+        <a asp-action="Index" class="">Back to List</a>
+        <input type="submit" value="Create" class="btn btn-primary">
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

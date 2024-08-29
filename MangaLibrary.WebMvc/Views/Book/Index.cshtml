@@ -1,7 +1,7 @@
 @model IEnumerable<BookListItem>
 
 @{
-  ViewData["Title"] = "Books Index";
+  ViewData["Title"] = "Books";
 }
 
 <h1>Books</h1>
@@ -9,17 +9,27 @@
   <a asp-action="Create">Create Book</a>
 </p>
 
+<div class="content-container">
+  <ul class="inline-block">
+    @foreach (var item in Model)
+    {
+      <li class="book-tile no-decoration no-style">
+        <div class="center">
+          <a asp-action="Details" asp-route-id="@item.Id">
+          <img src="@item.ImageLink">
+        </a>
 
-@foreach (var item in Model)
-{
-  <div class = "item-tile">
-  <img src="@item.ImageLink">
-  <h3>@item.Series Volume @item.Volume</h3>
-  
-  <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-  <span>|</span>
-  <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-  <span>|</span>
-  <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-  </div>
-}
+        <h3>@item.Series</h3>
+        <h4>Volume @item.Volume</h4>
+
+        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+        <span>|</span>
+        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+        <span>|</span>
+        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </div>
+        
+      </li>
+    }
+  </ul>
+</div>

@@ -1,3 +1,4 @@
+/* General styling for entire site */
 html {
   font-size: 14px;
 }
@@ -18,5 +19,154 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+  margin: 20px;
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 10px;
+}
+
+nav{
+  color: white;
+  background-color: red;
+  font-size: 1.7em;
+  letter-spacing: 0.04em;
+  padding: 1em 1em 0.5em;
+  margin: 0;
+  height:fit-content;
+  text-align: left;
+}
+nav ul{
+  margin-top: -20;
+  padding: 8px;
+  list-style-type: none;
+}
+
+nav li{
+  display: inline-block;
+  margin: 0;
+  padding-right: 5px;
+  border-right: solid 1px white;
+}
+
+nav li:last-child{
+  border-right: none;
+}
+
+nav li a{
+  text-decoration: none;
+  padding: 0.3em 0.6em;
+  color: white;
+  transition: 0.5s;
+}
+
+nav li a:hover{
+  color: red;
+  background-color: white;
+}
+
+.button {
+  width: fit-content;
+  padding: 10px 20px;
+  background-color: red;
+  border-radius: 20px;
+  font-size: larger;
+  margin: auto;
+  box-shadow: 5px 5px 5px;
+}
+
+.button a {
+  color: white;
+  margin: auto;
+}
+.title-description {
+  text-align: center;
+  width: 75%;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.content-container {
+  margin: 50px 0px;
+}
+
+.box-shadow {
+  box-shadow: 5px 5px 5px lightgray;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.no-style {
+  list-style-type: none;
+}
+
+#logo {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: xx-large;
+}
+
+/* Genre Page */
+.item {
+  display: inline-block;
+  text-align: center;
+}
+.item button {
+  border: solid black 2px;
+  border-radius: 20px;
+  width: 150px;
+  padding: 10px;
+  margin: 20px;
+  font-size: xx-large;
+}
+.item button a {
+  color: black;
+}
+.no-decoration {
+  text-decoration: none;
+}
+.item button:hover, .button:hover, .author-tile:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+/* Author Page */
+
+.author-tile {
+  width: 300px;
+  height: 400px;
+  text-align: center;
+  list-style-type: none;
+  display: inline-block;
+  margin: 10px 20px;
+  position: relative;
+  border: solid black 2px;
+}
+.author-tile img {
+  width: 200px;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+/* Book Page */
+.book-tile {
+  height: 400px;
+  width: 300px;
+  text-align: center;
+  border: solid black 2px;
+  margin: 10px 20px;
+}
+
+.book-tile img {
+  width: 200px;
 }

@@ -1,25 +1,40 @@
 @model IEnumerable<AuthorListItem>
 
 @{
-  ViewData["Title"] = "Author Index";
+  ViewData["Title"] = "Authors";
 }
 
-<h1>Author</h1>
-<p>
-  <a asp-action="Create">Create Author</a>
-</p>
-
-
-@foreach (var item in Model)
-{
-  <div class = "author-tile">
-  <img src="@item.ImageLink">
-  <h3>@item.FirstName @item.LastName</h3>
-  
-  <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-  <span>|</span>
-  <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-  <span>|</span>
-  <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+<body>
+  <h1>Authors</h1>
+  <p>
+    These are all of the manga authors which currently exist in our library. 
+    Click the photos to learn about the each author.
+    Don't see the author you're looking for? Click the red button below to add them!
+  </p>
+  <div class="button box-shadow">
+    <a asp-action="Create" class="no-decoration">Create Author</a>
   </div>
-}
+
+<div class="content-container">
+  <ul class="inline-block">
+    @foreach (var item in Model)
+    {
+      <li class="author-tile box-shadow">
+        <div class="center">
+          <a asp-action="Details" asp-route-id="@item.Id">
+            <img src="@item.ImageLink" alt="@item.FirstName @item.LastName">
+          </a>
+
+          <h3>@item.FirstName @item.LastName</h3>
+
+          <a asp-action="Edit" asp-route-id="@item.Id" class="">Edit</a>
+          <span>|</span>
+          <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </div>
+      </li>
+    }
+  </ul>
+  
+</div>
+  
+</body>
